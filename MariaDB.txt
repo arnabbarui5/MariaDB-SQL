@@ -1,0 +1,1258 @@
+Microsoft Windows [Version 10.0.19041.388]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Users\KIIT>cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root -p -h localhost
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.13-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases
+    ->
+    -> Ctrl-C -- exit!
+Bye
+
+C:\xampp\mysql\bin>mysql -u root -p -h localhost
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 19
+Server version: 10.4.13-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [(none)]> Ctrl-C -- exit!
+Bye
+
+C:\xampp\mysql\bin>mysql -u root -p -h localhost
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 20
+Server version: 10.4.13-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database student;
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| student            |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use student;
+Database changed
+MariaDB [student]> select database();
++------------+
+| database() |
++------------+
+| student    |
++------------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> create table students
+    -> (
+    -> name varchar(55),
+    -> age int
+    -> );
+Query OK, 0 rows affected (0.021 sec)
+
+MariaDB [student]> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| childrens         |
+| students          |
++-------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [student]> desc students;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(55) | YES  |     | NULL    |       |
+| age   | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.011 sec)
+
+MariaDB [student]> show columns from childrens;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(55) | NO   |     | NULL    |       |
+| age   | int(11)     | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.004 sec)
+
+MariaDB [student]> drop table childrens;
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [student]> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| students          |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [student]> drop table students;
+Query OK, 0 rows affected (0.015 sec)
+
+MariaDB [student]> create table students
+    -> (
+    -> id int,
+    -> name varchar(55),
+    -> class int
+    -> );
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [student]> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| students          |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [student]> desc students;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(55) | YES  |     | NULL    |       |
+| class | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.005 sec)
+
+MariaDB [student]> insert into students
+    -> (id, name, class)
+    -> values(1, 'Arnab', 10);
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [student]> insert into students
+    -> values(2, 'Kunal', 8);
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [student]> select * from students;
++------+-------+-------+
+| id   | name  | class |
++------+-------+-------+
+|    1 | Arnab |    10 |
+|    2 | Kunal |     8 |
++------+-------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [student]> show warnings;
+Empty set (0.000 sec)
+
+MariaDB [student]> create table stunull;
+ERROR 2006 (HY000): MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    145
+Current database: student
+
+ERROR 1113 (42000): A table must have at least 1 column
+MariaDB [student]> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| students          |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [student]> create table stunull
+    -> (
+    -> id int not null,
+    -> name varchar(55) not null
+    -> );
+Query OK, 0 rows affected (0.025 sec)
+
+MariaDB [student]> desc stunull
+    -> ;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   |     | NULL    |       |
+| name  | varchar(55) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.006 sec)
+
+MariaDB [student]> insert into stunull values('Pablu');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [student]> insert into stunull values(5,'Pablu');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [student]> select * from stunull;
++----+-------+
+| id | name  |
++----+-------+
+|  5 | Pablu |
++----+-------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> drop stunull;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'stunull' at line 1
+MariaDB [student]> drop table stunull;
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [student]> desc tables;
+ERROR 1146 (42S02): Table 'student.tables' doesn't exist
+MariaDB [student]> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| students          |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [student]> select * from students;
++------+-------+-------+
+| id   | name  | class |
++------+-------+-------+
+|    1 | Arnab |    10 |
+|    2 | Kunal |     8 |
++------+-------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [student]> alter table students add roll int;
+Query OK, 0 rows affected (0.019 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [student]> desc students;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(55) | YES  |     | NULL    |       |
+| class | int(11)     | YES  |     | NULL    |       |
+| roll  | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.011 sec)
+
+MariaDB [student]> select * from students;
++------+-------+-------+------+
+| id   | name  | class | roll |
++------+-------+-------+------+
+|    1 | Arnab |    10 | NULL |
+|    2 | Kunal |     8 | NULL |
++------+-------+-------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [student]> alter table students drop coloumn roll;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'roll' at line 1
+MariaDB [student]> alter table students drop column roll;
+Query OK, 0 rows affected (0.020 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [student]> select * from students;
++------+-------+-------+
+| id   | name  | class |
++------+-------+-------+
+|    1 | Arnab |    10 |
+|    2 | Kunal |     8 |
++------+-------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [student]> desc students;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(55) | YES  |     | NULL    |       |
+| class | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.011 sec)
+
+MariaDB [student]> create table studentData
+    -> (
+    -> stud_id int not null,
+    -> name varchar(55),
+    -> age int,
+    -> PRIMARY KEY (stud_id)
+    -> );
+Query OK, 0 rows affected (0.024 sec)
+
+MariaDB [student]> desc studentData;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| stud_id | int(11)     | NO   | PRI | NULL    |       |
+| name    | varchar(55) | YES  |     | NULL    |       |
+| age     | int(11)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.013 sec)
+
+MariaDB [student]> CREATE TABLE StudentDetails
+    -> (
+    -> Stud_ID INT NOT NULL AUTO_INCREMENT,
+    -> Name VARCHAR(55),
+    -> Age INT,
+    -> PRIMARY KEY (Stud_ID)
+    -> );
+Query OK, 0 rows affected (0.024 sec)
+
+MariaDB [student]> desc StudentDetails;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| Stud_ID | int(11)     | NO   | PRI | NULL    | auto_increment |
+| Name    | varchar(55) | YES  |     | NULL    |                |
+| Age     | int(11)     | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.012 sec)
+
+MariaDB [student]> INSERT INTO StudentDetails (Name, Age) VALUES ("Pablu", 21);
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [student]> SELECT * FROM StudentDetails;
++---------+-------+------+
+| Stud_ID | Name  | Age  |
++---------+-------+------+
+|       1 | Pablu |   21 |
++---------+-------+------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> INSERT INTO StudentDetails (Name, Age) VALUES ("Dad", 64);
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [student]> INSERT INTO StudentDetails (Name, Age) VALUES ("Mom", 53);
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [student]> INSERT INTO StudentDetails (Name, Age) VALUES ("Didi", 31);
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [student]> SELECT * FROM StudentDetails;
++---------+-------+------+
+| Stud_ID | Name  | Age  |
++---------+-------+------+
+|       1 | Pablu |   21 |
+|       2 | Dad   |   64 |
+|       3 | Mom   |   53 |
+|       4 | Didi  |   31 |
++---------+-------+------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> SHOW TABLES;
++-------------------+
+| Tables_in_student |
++-------------------+
+| studentdata       |
+| studentdetails    |
+| students          |
++-------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [student]> desc students;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(55) | YES  |     | NULL    |       |
+| class | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.012 sec)
+
+MariaDB [student]> DROP TABLE STUDENTS;
+Query OK, 0 rows affected (0.017 sec)
+
+MariaDB [student]> SHOW TABLES
+    -> ;
++-------------------+
+| Tables_in_student |
++-------------------+
+| studentdata       |
+| studentdetails    |
++-------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [student]> CREATE TABLE Students
+    -> (
+    -> ID INT NOT NULL AUTO_INCREMENT,
+    -> First_Name VARCHAR(55),
+    -> Last_Name VARCHAR(55),
+    -> Age INT,
+    -> PRIMARY KEY (ID)
+    -> );
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [student]> DESC Students;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| ID         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(55) | YES  |     | NULL    |                |
+| Last_Name  | varchar(55) | YES  |     | NULL    |                |
+| Age        | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.012 sec)
+
+MariaDB [student]> INSERT INTO Students (First_Name, Last_Name, Age) VALUES ("Sergio", "Ramos", 32);
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [student]> INSERT INTO Students (First_Name, Last_Name, Age) VALUES ("Rafael", "Varane", 27);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [student]> INSERT INTO Students (First_Name, Last_Name, Age) VALUES ("Dani", "Carvajal", 28);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [student]> INSERT INTO Students (First_Name, Last_Name, Age) VALUES ("Marcelo", "Viera", 28);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [student]> INSERT INTO Students (First_Name, Last_Name, Age) VALUES ("Thibaut", "Courtois", 28);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [student]> INSERT INTO Students (First_Name, Last_Name, Age) VALUES ("Luka", "Modric", 34);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [student]> INSERT INTO Students (First_Name, Last_Name, Age) VALUES ("Fede", "Valverde", 34);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [student]> INSERT INTO Students (First_Name, Last_Name, Age) VALUES ("Karim", "Benz", 32);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [student]> SELECT * FROM Students;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  2 | Rafael     | Varane    |   27 |
+|  3 | Dani       | Carvajal  |   28 |
+|  4 | Marcelo    | Viera     |   28 |
+|  5 | Thibaut    | Courtois  |   28 |
+|  6 | Luka       | Modric    |   34 |
+|  7 | Fede       | Valverde  |   34 |
+|  8 | Karim      | Benz      |   32 |
++----+------------+-----------+------+
+8 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Students WHERE Age > 30;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  6 | Luka       | Modric    |   34 |
+|  7 | Fede       | Valverde  |   34 |
+|  8 | Karim      | Benz      |   32 |
++----+------------+-----------+------+
+4 rows in set (0.001 sec)
+
+MariaDB [student]> SELECT First_Name FROM Students WHERE AGE = 28;
++------------+
+| First_Name |
++------------+
+| Dani       |
+| Marcelo    |
+| Thibaut    |
++------------+
+3 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT First_Name, Last_Name FROM Students WHERE AGE = 28;
++------------+-----------+
+| First_Name | Last_Name |
++------------+-----------+
+| Dani       | Carvajal  |
+| Marcelo    | Viera     |
+| Thibaut    | Courtois  |
++------------+-----------+
+3 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Students;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  2 | Rafael     | Varane    |   27 |
+|  3 | Dani       | Carvajal  |   28 |
+|  4 | Marcelo    | Viera     |   28 |
+|  5 | Thibaut    | Courtois  |   28 |
+|  6 | Luka       | Modric    |   34 |
+|  7 | Fede       | Valverde  |   34 |
+|  8 | Karim      | Benz      |   32 |
++----+------------+-----------+------+
+8 rows in set (0.000 sec)
+
+MariaDB [student]> UPDATE Students SET Age = 22 WHERE First_Name = "Fede";
+Query OK, 1 row affected (0.022 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [student]> SELECT * FROM Students;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  2 | Rafael     | Varane    |   27 |
+|  3 | Dani       | Carvajal  |   28 |
+|  4 | Marcelo    | Viera     |   28 |
+|  5 | Thibaut    | Courtois  |   28 |
+|  6 | Luka       | Modric    |   34 |
+|  7 | Fede       | Valverde  |   22 |
+|  8 | Karim      | Benz      |   32 |
++----+------------+-----------+------+
+8 rows in set (0.008 sec)
+
+MariaDB [student]> UPDATE Students SET Last_Name = "Benzema" WHERE ID = 8;
+Query OK, 1 row affected (0.013 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [student]> SELECT * FROM Students;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  2 | Rafael     | Varane    |   27 |
+|  3 | Dani       | Carvajal  |   28 |
+|  4 | Marcelo    | Viera     |   28 |
+|  5 | Thibaut    | Courtois  |   28 |
+|  6 | Luka       | Modric    |   34 |
+|  7 | Fede       | Valverde  |   22 |
+|  8 | Karim      | Benzema   |   32 |
++----+------------+-----------+------+
+8 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Students WHERE Last_Name = "Carvajal";
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  3 | Dani       | Carvajal  |   28 |
++----+------------+-----------+------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> DELETE FROM Students WHERE Last_Name = "Carvajal";
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [student]> SELECT * FROM Students;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  2 | Rafael     | Varane    |   27 |
+|  4 | Marcelo    | Viera     |   28 |
+|  5 | Thibaut    | Courtois  |   28 |
+|  6 | Luka       | Modric    |   34 |
+|  7 | Fede       | Valverde  |   22 |
+|  8 | Karim      | Benzema   |   32 |
++----+------------+-----------+------+
+7 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT DISTINCT Age from Students;
++------+
+| Age  |
++------+
+|   32 |
+|   27 |
+|   28 |
+|   34 |
+|   22 |
++------+
+5 rows in set (0.009 sec)
+
+MariaDB [student]> SELECT Age FROM Students ORDER BY Age;
++------+
+| Age  |
++------+
+|   22 |
+|   27 |
+|   28 |
+|   28 |
+|   32 |
+|   32 |
+|   34 |
++------+
+7 rows in set (0.008 sec)
+
+MariaDB [student]> SELECT DISTINCT Age FROM Students ORDER BY Age;
++------+
+| Age  |
++------+
+|   22 |
+|   27 |
+|   28 |
+|   32 |
+|   34 |
++------+
+5 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT First_Name FROM Students ORDER BY First_Name LIMIT 3;
++------------+
+| First_Name |
++------------+
+| Fede       |
+| Karim      |
+| Luka       |
++------------+
+3 rows in set (0.013 sec)
+
+MariaDB [student]> SELECT First_Name from Students WHERE First_Name LIKE %erg%;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%erg%' at line 1
+MariaDB [student]> SELECT First_Name from Students WHERE First_Name LIKE '%erg%';
++------------+
+| First_Name |
++------------+
+| Sergio     |
++------------+
+1 row in set (0.008 sec)
+
+MariaDB [student]> SELECT Last_Name from Students WHERE Last_Name LIKE '%ic%';
++-----------+
+| Last_Name |
++-----------+
+| Modric    |
++-----------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> SELECT Last_Name from Students WHERE Last_Name LIKE 'V%';
++-----------+
+| Last_Name |
++-----------+
+| Varane    |
+| Viera     |
+| Valverde  |
++-----------+
+3 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT MAX(Age) FROM Students;
++----------+
+| MAX(Age) |
++----------+
+|       34 |
++----------+
+1 row in set (0.008 sec)
+
+MariaDB [student]> SELECT COUNT(ID) FROM Students;
++-----------+
+| COUNT(ID) |
++-----------+
+|         7 |
++-----------+
+1 row in set (0.008 sec)
+
+MariaDB [student]> SELECT First_Name, Last_Name , Age FROM Students WHERE MAX(Age);
+ERROR 1111 (HY000): Invalid use of group function
+MariaDB [student]> SELECT First_Name, Last_Name , Age FROM Students WHERE AGE IS MAX;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX' at line 1
+MariaDB [student]> SELECT First_Name, Last_Name , Age FROM Students WHERE AGE > 30;
++------------+-----------+------+
+| First_Name | Last_Name | Age  |
++------------+-----------+------+
+| Sergio     | Ramos     |   32 |
+| Luka       | Modric    |   34 |
+| Karim      | Benzema   |   32 |
++------------+-----------+------+
+3 rows in set (0.007 sec)
+
+MariaDB [student]> SELECT AVG(Age) FROM Students;
++----------+
+| AVG(Age) |
++----------+
+|  29.0000 |
++----------+
+1 row in set (0.008 sec)
+
+MariaDB [student]> SELECT First_Name, Last_Name FROM Students WHERE Age = 28;
++------------+-----------+
+| First_Name | Last_Name |
++------------+-----------+
+| Marcelo    | Viera     |
+| Thibaut    | Courtois  |
++------------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [student]> SELECT ALL Students WHOSE Age IS NOT EQUAL TO 28;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Age IS NOT EQUAL TO 28' at line 1
+MariaDB [student]> SHOW Errors;
++-------+------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Level | Code | Message                                                                                                                                                                    |
++-------+------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Error | 1064 | You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Age IS NOT EQUAL TO 28' at line 1 |
++-------+------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> SELECT ALL Students WHOSE Age != 28;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Age != 28' at line 1
+MariaDB [student]> SELECT * FROM Students WHERE Age != 28;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  2 | Rafael     | Varane    |   27 |
+|  6 | Luka       | Modric    |   34 |
+|  7 | Fede       | Valverde  |   22 |
+|  8 | Karim      | Benzema   |   32 |
++----+------------+-----------+------+
+5 rows in set (0.007 sec)
+
+MariaDB [student]> SELECT First_Name, Last_Name FROM Students WHERE Age >= 25 OR Age<=33;
++------------+-----------+
+| First_Name | Last_Name |
++------------+-----------+
+| Sergio     | Ramos     |
+| Rafael     | Varane    |
+| Marcelo    | Viera     |
+| Thibaut    | Courtois  |
+| Luka       | Modric    |
+| Fede       | Valverde  |
+| Karim      | Benzema   |
++------------+-----------+
+7 rows in set (0.007 sec)
+
+MariaDB [student]> SELECT First_Name, Last_Name, Age FROM Students WHERE Age >= 25 OR Age<=33;
++------------+-----------+------+
+| First_Name | Last_Name | Age  |
++------------+-----------+------+
+| Sergio     | Ramos     |   32 |
+| Rafael     | Varane    |   27 |
+| Marcelo    | Viera     |   28 |
+| Thibaut    | Courtois  |   28 |
+| Luka       | Modric    |   34 |
+| Fede       | Valverde  |   22 |
+| Karim      | Benzema   |   32 |
++------------+-----------+------+
+7 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT First_Name, Last_Name, Age FROM Students WHERE Age >= 25 AND Age <= 33;
++------------+-----------+------+
+| First_Name | Last_Name | Age  |
++------------+-----------+------+
+| Sergio     | Ramos     |   32 |
+| Rafael     | Varane    |   27 |
+| Marcelo    | Viera     |   28 |
+| Thibaut    | Courtois  |   28 |
+| Karim      | Benzema   |   32 |
++------------+-----------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Students WHERE Age BETWEEN 27 AND 34;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  2 | Rafael     | Varane    |   27 |
+|  4 | Marcelo    | Viera     |   28 |
+|  5 | Thibaut    | Courtois  |   28 |
+|  6 | Luka       | Modric    |   34 |
+|  8 | Karim      | Benzema   |   32 |
++----+------------+-----------+------+
+6 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Students WHERE Age NOT BETWEEN 27 AND 34;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  7 | Fede       | Valverde  |   22 |
++----+------------+-----------+------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Students;
++----+------------+-----------+------+
+| ID | First_Name | Last_Name | Age  |
++----+------------+-----------+------+
+|  1 | Sergio     | Ramos     |   32 |
+|  2 | Rafael     | Varane    |   27 |
+|  4 | Marcelo    | Viera     |   28 |
+|  5 | Thibaut    | Courtois  |   28 |
+|  6 | Luka       | Modric    |   34 |
+|  7 | Fede       | Valverde  |   22 |
+|  8 | Karim      | Benzema   |   32 |
++----+------------+-----------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [student]> SELECT CONCAT (First_Name, ' ', Last_Name) as Full_Name;
+ERROR 1054 (42S22): Unknown column 'First_Name' in 'field list'
+MariaDB [student]> SELECT CONCAT (First_Name, ' ', Last_Name) FROM Students AS Full_Name;
++-------------------------------------+
+| CONCAT (First_Name, ' ', Last_Name) |
++-------------------------------------+
+| Sergio Ramos                        |
+| Rafael Varane                       |
+| Marcelo Viera                       |
+| Thibaut Courtois                    |
+| Luka Modric                         |
+| Fede Valverde                       |
+| Karim Benzema                       |
++-------------------------------------+
+7 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT CONCAT (First_Name, '  ', Last_Name) FROM Students as Full_Name;
++--------------------------------------+
+| CONCAT (First_Name, '  ', Last_Name) |
++--------------------------------------+
+| Sergio  Ramos                        |
+| Rafael  Varane                       |
+| Marcelo  Viera                       |
+| Thibaut  Courtois                    |
+| Luka  Modric                         |
+| Fede  Valverde                       |
+| Karim  Benzema                       |
++--------------------------------------+
+7 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT REVERSE("Sneha") AS Reverse;
++---------+
+| Reverse |
++---------+
+| ahenS   |
++---------+
+1 row in set (0.009 sec)
+
+MariaDB [student]> SELECT REVERSE("pablu") AS Reverse;
++---------+
+| Reverse |
++---------+
+| ulbap   |
++---------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> SELECT REVERSE("munmun") AS Reverse;
++---------+
+| Reverse |
++---------+
+| numnum  |
++---------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> SELECT CONCAT('pablu', REVERSE('pablu')) AS Palindrome;
++------------+
+| Palindrome |
++------------+
+| pabluulbap |
++------------+
+1 row in set (0.002 sec)
+
+MariaDB [student]> SELECT CHAR_LENGTH ('Ibrahimovic') AS Length_Of_Characters;
++----------------------+
+| Length_Of_Characters |
++----------------------+
+|                   11 |
++----------------------+
+1 row in set (0.007 sec)
+
+MariaDB [student]> SELECT LOWER("PABLU") AS Lower_Case;
++------------+
+| Lower_Case |
++------------+
+| pablu      |
++------------+
+1 row in set (0.007 sec)
+
+MariaDB [student]> SELECT UPPER("pablu") AS Upper_Case;
++------------+
+| Upper_Case |
++------------+
+| PABLU      |
++------------+
+1 row in set (0.000 sec)
+
+MariaDB [student]> SHOW Tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| studentdata       |
+| studentdetails    |
+| students          |
++-------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [student]> DROP TABLE studentdetails;
+Query OK, 0 rows affected (0.030 sec)
+
+MariaDB [student]> CREATE TABLE Student_Details
+    -> (
+    -> Name VARCHAR(55),
+    -> DOB DATE,
+    -> Exam_Time TIME,
+    -> Details DATETIME
+    -> );
+Query OK, 0 rows affected (0.025 sec)
+
+MariaDB [student]> DESC Student_Details;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Name      | varchar(55) | YES  |     | NULL    |       |
+| DOB       | date        | YES  |     | NULL    |       |
+| Exam_Time | time        | YES  |     | NULL    |       |
+| Details   | datetime    | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.020 sec)
+
+MariaDB [student]> INSERT INTO Student_Details VALUES
+    -> (
+    -> "Pablu", '1998-10-05', '02:40:54', '1998-10-05, 02:40:54'
+    -> ),
+    -> ("Didi", '1987-08-03', '06:30:12', '1987-08-03, 06:30:12');
+Query OK, 2 rows affected, 2 warnings (0.009 sec)
+Records: 2  Duplicates: 0  Warnings: 2
+
+MariaDB [student]> SELECT * FROM Student_Details;
++-------+------------+-----------+---------------------+
+| Name  | DOB        | Exam_Time | Details             |
++-------+------------+-----------+---------------------+
+| Pablu | 1998-10-05 | 02:40:54  | 1998-10-05 00:00:00 |
+| Didi  | 1987-08-03 | 06:30:12  | 1987-08-03 00:00:00 |
++-------+------------+-----------+---------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [student]> INSERT INTO Student_Details VALUES("Babusona", CURRDATE(), )
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+MariaDB [student]> INSERT INTO Student_Details VALUES("Babusona", CURRDATE(),
+    -> CURRTIME(), NOW()
+    -> );
+ERROR 1305 (42000): FUNCTION student.CURRDATE does not exist
+MariaDB [student]> INSERT INTO Student_Details VALUES("Babusona", CURDATE(),
+    -> CURRTIME(), NOW()
+    -> );
+ERROR 1305 (42000): FUNCTION student.CURRTIME does not exist
+MariaDB [student]> INSERT INTO Student_Details VALUES("Babusona", CURDATE(),
+    -> CURTIME(), NOW()
+    -> );
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [student]> SELECT * FROM Student_Details;
++----------+------------+-----------+---------------------+
+| Name     | DOB        | Exam_Time | Details             |
++----------+------------+-----------+---------------------+
+| Pablu    | 1998-10-05 | 02:40:54  | 1998-10-05 00:00:00 |
+| Didi     | 1987-08-03 | 06:30:12  | 1987-08-03 00:00:00 |
+| Babusona | 2020-08-03 | 19:20:19  | 2020-08-03 19:20:19 |
++----------+------------+-----------+---------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [student]> CREATE TABLE Customers
+    -> (
+    -> Cust_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> Cust_Name VARCHAR(55),
+    -> Email VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.377 sec)
+
+MariaDB [student]> DESC Customers;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| Cust_ID   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| Cust_Name | varchar(55)  | YES  |     | NULL    |                |
+| Email     | varchar(100) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.013 sec)
+
+MariaDB [student]> CREATE TABLE Orders
+    -> (
+    -> Order_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> Order_Date DATE,
+    -> Customer_ID INT,
+    -> FOREIGN KEY(Customer_ID) REFERENCES Customers(Cust_ID)
+    -> );
+Query OK, 0 rows affected (0.027 sec)
+
+MariaDB [student]> DESC Orders;
++-------------+---------+------+-----+---------+----------------+
+| Field       | Type    | Null | Key | Default | Extra          |
++-------------+---------+------+-----+---------+----------------+
+| Order_ID    | int(11) | NO   | PRI | NULL    | auto_increment |
+| Order_Date  | date    | YES  |     | NULL    |                |
+| Customer_ID | int(11) | YES  | MUL | NULL    |                |
++-------------+---------+------+-----+---------+----------------+
+3 rows in set (0.128 sec)
+
+MariaDB [student]> INSERT INTO Customers(Cust_Name, Email) VALUES('Arnab Barui', 'baruiarnab51098@gmail.com'),('Munmun Barui', 'baruimunmun28@gmail.com'),('Swapan Kr Barui','baruiswapan55@gmail.com'),('Sneha Mondal', 'mondalsneha51098@gmail.com')
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 2
+MariaDB [student]> INSERT INTO Customers(Cust_Name, Email) VALUES('Arnab Barui', 'baruiarnab51098@gmail.com'), VALUES('Munmun Barui', 'baruimunmun28@gmail.com'), VALUES('Swapan Kr Barui','baruiswapan55@gmail.com'), VALUES('Sneha Mondal', 'mondalsneha51098@gmail.com')
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'VALUES('Munmun Barui', 'baruimunmun28@gmail.com'), VALUES('Swapan Kr Barui','...' at line 1
+MariaDB [student]> INSERT INTO Customers(Cust_Name, Email) VALUES('Arnab Barui', 'baruiarnab51098@gmail.com')
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 2
+MariaDB [student]> check errors;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'errors' at line 1
+MariaDB [student]> DESC Customers;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| Cust_ID   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| Cust_Name | varchar(55)  | YES  |     | NULL    |                |
+| Email     | varchar(100) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.005 sec)
+
+MariaDB [student]> INSERT INTO Customers(Cust_ID, Cust_Name, Email) VALUES(1,'Arnab Barui', 'baruiarnab51098@gmail.com')
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 2
+MariaDB [student]> INSERT INTO Customers(Cust_Name, Email) VALUES('Arnab Barui', 'baruiarnab51098@gmail.com'), VALUES('Munmun Barui', 'baruimunmun28@gmail.com'), VALUES('Swapan Kr Barui','baruiswapan55@gmail.com'), VALUES('Sneha Mondal', 'mondalsneha51098@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'VALUES('Munmun Barui', 'baruimunmun28@gmail.com'), VALUES('Swapan Kr Barui','...' at line 1
+MariaDB [student]>
+MariaDB [student]>
+MariaDB [student]>
+MariaDB [student]>
+MariaDB [student]> INSERT INTO Customers(Cust_ID,Cust_Name, Email) VALUES(1,'Arnab Barui', 'baruiarnab51098@gmail.com'),(2,'Munmun Barui', 'baruimunmun28@gmail.com'),(3,'Swapan Kr Barui','baruiswapan55@gmail.com'),(4,'Sneha Mondal', 'mondalsneha51098@gmail.com');
+Query OK, 4 rows affected (0.009 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [student]> SELECT * FROM Customers;
++---------+-----------------+----------------------------+
+| Cust_ID | Cust_Name       | Email                      |
++---------+-----------------+----------------------------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com  |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com    |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com    |
+|       4 | Sneha Mondal    | mondalsneha51098@gmail.com |
++---------+-----------------+----------------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> DESC Orders;
++-------------+---------+------+-----+---------+----------------+
+| Field       | Type    | Null | Key | Default | Extra          |
++-------------+---------+------+-----+---------+----------------+
+| Order_ID    | int(11) | NO   | PRI | NULL    | auto_increment |
+| Order_Date  | date    | YES  |     | NULL    |                |
+| Customer_ID | int(11) | YES  | MUL | NULL    |                |
++-------------+---------+------+-----+---------+----------------+
+3 rows in set (0.012 sec)
+
+MariaDB [student]> ALTER TABLE Orders ADD Orders INT;
+Query OK, 0 rows affected (0.382 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [student]> DESC Orders;
++-------------+---------+------+-----+---------+----------------+
+| Field       | Type    | Null | Key | Default | Extra          |
++-------------+---------+------+-----+---------+----------------+
+| Order_ID    | int(11) | NO   | PRI | NULL    | auto_increment |
+| Order_Date  | date    | YES  |     | NULL    |                |
+| Customer_ID | int(11) | YES  | MUL | NULL    |                |
+| Orders      | int(11) | YES  |     | NULL    |                |
++-------------+---------+------+-----+---------+----------------+
+4 rows in set (0.017 sec)
+
+MariaDB [student]> ISERT INTO Orders (Order_ID, Order_Date, Orders, Customer_ID) VALUES(1, '2019-05-17', 52, 1), (2, 2020-02-30, 25, 2),(3, 2020-03-21, 37, 3),(4, 2020-05-04, 46, 4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ISERT INTO Orders (Order_ID, Order_Date, Orders, Customer_ID) VALUES(1, '2019...' at line 1
+MariaDB [student]> INSERT INTO Orders (Order_ID, Order_Date, Orders, Customer_ID) VALUES(1, '2019-05-17', 52, 1), (2, 2020-02-30, 25, 2),(3, 2020-03-21, 37, 3),(4, 2020-05-04, 46, 4);
+Query OK, 4 rows affected, 3 warnings (0.004 sec)
+Records: 4  Duplicates: 0  Warnings: 3
+
+MariaDB [student]> SELECT * FROM Customers;
++---------+-----------------+----------------------------+
+| Cust_ID | Cust_Name       | Email                      |
++---------+-----------------+----------------------------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com  |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com    |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com    |
+|       4 | Sneha Mondal    | mondalsneha51098@gmail.com |
++---------+-----------------+----------------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Orders;
++----------+------------+-------------+--------+
+| Order_ID | Order_Date | Customer_ID | Orders |
++----------+------------+-------------+--------+
+|        1 | 2019-05-17 |           1 |     52 |
+|        2 | 0000-00-00 |           2 |     25 |
+|        3 | 0000-00-00 |           3 |     37 |
+|        4 | 0000-00-00 |           4 |     46 |
++----------+------------+-------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> DELETE FROM Orders;
+Query OK, 4 rows affected (0.008 sec)
+
+MariaDB [student]> INSERT INTO Orders (Order_ID, Order_Date, Orders, Customer_ID) VALUES(1, '2019-05-17', 52, 1), (2, '2020-02-30', 25, 2),(3, '2020-03-21', 37, 3),(4, '2020-05-04', 46, 4);
+Query OK, 4 rows affected, 1 warning (0.008 sec)
+Records: 4  Duplicates: 0  Warnings: 1
+
+MariaDB [student]> SELECT * FROM Customers;
++---------+-----------------+----------------------------+
+| Cust_ID | Cust_Name       | Email                      |
++---------+-----------------+----------------------------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com  |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com    |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com    |
+|       4 | Sneha Mondal    | mondalsneha51098@gmail.com |
++---------+-----------------+----------------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Orders;
++----------+------------+-------------+--------+
+| Order_ID | Order_Date | Customer_ID | Orders |
++----------+------------+-------------+--------+
+|        1 | 2019-05-17 |           1 |     52 |
+|        2 | 0000-00-00 |           2 |     25 |
+|        3 | 2020-03-21 |           3 |     37 |
+|        4 | 2020-05-04 |           4 |     46 |
++----------+------------+-------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> ALTER TABLE Orders SET Order_Date = "2020-02-22" WHERE Order_ID = 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SET Order_Date = "2020-02-22" WHERE Order_ID = 2' at line 1
+MariaDB [student]> ALTER TABLE Orders SET Order_Date = "2020-02-22" WHERE Customer_ID = 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SET Order_Date = "2020-02-22" WHERE Customer_ID = 2' at line 1
+MariaDB [student]> ALTER TABLE Orders SET Order_Date = "2020/02/21" WHERE Customer_ID = 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SET Order_Date = "2020/02/21" WHERE Customer_ID = 2' at line 1
+MariaDB [student]> DELETE FROM Orders;
+Query OK, 4 rows affected (0.009 sec)
+
+MariaDB [student]> INSERT INTO Orders (Order_ID, Order_Date, Orders, Customer_ID) VALUES(1, '2019-05-17', 52, 1), (2, '2020-02-22', 25, 2),(3, '2020-03-21', 37, 3),(4, '2020-05-04', 46, 4);
+Query OK, 4 rows affected (0.009 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [student]> SELECT * FROM Customers;
++---------+-----------------+----------------------------+
+| Cust_ID | Cust_Name       | Email                      |
++---------+-----------------+----------------------------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com  |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com    |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com    |
+|       4 | Sneha Mondal    | mondalsneha51098@gmail.com |
++---------+-----------------+----------------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [student]> SELECT * FROM Orders;
++----------+------------+-------------+--------+
+| Order_ID | Order_Date | Customer_ID | Orders |
++----------+------------+-------------+--------+
+|        1 | 2019-05-17 |           1 |     52 |
+|        2 | 2020-02-22 |           2 |     25 |
+|        3 | 2020-03-21 |           3 |     37 |
+|        4 | 2020-05-04 |           4 |     46 |
++----------+------------+-------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> DELETE FROM Orders;
+Query OK, 4 rows affected (0.008 sec)
+
+MariaDB [student]> INSERT INTO Orders (Order_ID, Order_Date, Orders, Customer_ID) VALUES(1, '2019-05-17', 52, 1), (2, 2020-02-30, 25, 2),(3, 2020-03-21, 37, 1),(4, 2020-05-04, 46, 3);
+Query OK, 4 rows affected, 3 warnings (0.009 sec)
+Records: 4  Duplicates: 0  Warnings: 3
+
+MariaDB [student]> SELECT * FROM Orders;
++----------+------------+-------------+--------+
+| Order_ID | Order_Date | Customer_ID | Orders |
++----------+------------+-------------+--------+
+|        1 | 2019-05-17 |           1 |     52 |
+|        2 | 0000-00-00 |           2 |     25 |
+|        3 | 0000-00-00 |           1 |     37 |
+|        4 | 0000-00-00 |           3 |     46 |
++----------+------------+-------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> DELETE FROM Orders;
+Query OK, 4 rows affected (0.009 sec)
+
+MariaDB [student]> INSERT INTO Orders (Order_ID, Order_Date, Orders, Customer_ID) VALUES(1, '2019-05-17', 52, 1), (2, '2020-02-22', 25, 2),(3, '2020-03-21', 37, 1),(4, '2020-05-04', 46, 3);
+Query OK, 4 rows affected (0.009 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [student]> SELECT * FROM Orders;
++----------+------------+-------------+--------+
+| Order_ID | Order_Date | Customer_ID | Orders |
++----------+------------+-------------+--------+
+|        1 | 2019-05-17 |           1 |     52 |
+|        2 | 2020-02-22 |           2 |     25 |
+|        3 | 2020-03-21 |           1 |     37 |
+|        4 | 2020-05-04 |           3 |     46 |
++----------+------------+-------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Customers;
++---------+-----------------+----------------------------+
+| Cust_ID | Cust_Name       | Email                      |
++---------+-----------------+----------------------------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com  |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com    |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com    |
+|       4 | Sneha Mondal    | mondalsneha51098@gmail.com |
++---------+-----------------+----------------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Customers, Orders WHERE
+    -> Customers.Cust_ID = Orders.Order_ID;
++---------+-----------------+----------------------------+----------+------------+-------------+--------+
+| Cust_ID | Cust_Name       | Email                      | Order_ID | Order_Date | Customer_ID | Orders |
++---------+-----------------+----------------------------+----------+------------+-------------+--------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com  |        1 | 2019-05-17 |           1 |     52 |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com    |        2 | 2020-02-22 |           2 |     25 |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com    |        3 | 2020-03-21 |           1 |     37 |
+|       4 | Sneha Mondal    | mondalsneha51098@gmail.com |        4 | 2020-05-04 |           3 |     46 |
++---------+-----------------+----------------------------+----------+------------+-------------+--------+
+4 rows in set (0.008 sec)
+
+MariaDB [student]> SELECT * FROM Customers, Orders WHERE
+    -> Customers.Cust_ID = Orders.Customer_ID;
++---------+-----------------+---------------------------+----------+------------+-------------+--------+
+| Cust_ID | Cust_Name       | Email                     | Order_ID | Order_Date | Customer_ID | Orders |
++---------+-----------------+---------------------------+----------+------------+-------------+--------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com |        1 | 2019-05-17 |           1 |     52 |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com   |        2 | 2020-02-22 |           2 |     25 |
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com |        3 | 2020-03-21 |           1 |     37 |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com   |        4 | 2020-05-04 |           3 |     46 |
++---------+-----------------+---------------------------+----------+------------+-------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [student]> SELECT * FROM Customers
+    -> JOIN Orders
+    -> ON Customers.Cust_ID = Orders.Customer_ID;
++---------+-----------------+---------------------------+----------+------------+-------------+--------+
+| Cust_ID | Cust_Name       | Email                     | Order_ID | Order_Date | Customer_ID | Orders |
++---------+-----------------+---------------------------+----------+------------+-------------+--------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com |        1 | 2019-05-17 |           1 |     52 |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com   |        2 | 2020-02-22 |           2 |     25 |
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com |        3 | 2020-03-21 |           1 |     37 |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com   |        4 | 2020-05-04 |           3 |     46 |
++---------+-----------------+---------------------------+----------+------------+-------------+--------+
+4 rows in set (0.001 sec)
+
+MariaDB [student]> SELECT * FROM Customers LEFT JOIN Orders
+    -> ON Customers.Cust_ID = Orders.Customer_ID;
++---------+-----------------+----------------------------+----------+------------+-------------+--------+
+| Cust_ID | Cust_Name       | Email                      | Order_ID | Order_Date | Customer_ID | Orders |
++---------+-----------------+----------------------------+----------+------------+-------------+--------+
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com  |        1 | 2019-05-17 |           1 |     52 |
+|       2 | Munmun Barui    | baruimunmun28@gmail.com    |        2 | 2020-02-22 |           2 |     25 |
+|       1 | Arnab Barui     | baruiarnab51098@gmail.com  |        3 | 2020-03-21 |           1 |     37 |
+|       3 | Swapan Kr Barui | baruiswapan55@gmail.com    |        4 | 2020-05-04 |           3 |     46 |
+|       4 | Sneha Mondal    | mondalsneha51098@gmail.com |     NULL | NULL       |        NULL |   NULL |
++---------+-----------------+----------------------------+----------+------------+-------------+--------+
+5 rows in set (0.008 sec)
+
+MariaDB [student]>
